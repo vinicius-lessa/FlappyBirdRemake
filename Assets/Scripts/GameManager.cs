@@ -1,9 +1,9 @@
 /**
-*   FILE DOC
+*   FILE DOCUMENT
 *   Description: GameManager do Jogo...
 *   08/19/2022 - Vinícius Lessa: Mudança na documentação do arquivo
 *
-**/ 
+**/
 
 using System.Collections;
 using System.Collections.Generic;
