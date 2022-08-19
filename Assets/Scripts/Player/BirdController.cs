@@ -26,23 +26,27 @@ using UnityEngine;
 
 public class BirdController : MonoBehaviour
 {
+    // Player Components
+    private Rigidbody2D rb;
+    private float jumpForce = 7f;
+
     // Start is called before the first frame update
     void Start()
     {
-        // QualitySettings.vSyncCount = 0;
-        // Application.targetFrameRate = 10;
+        // Fazendo Cashing do Método GET COMPONENT para o processamento ficar mais leve a cada frame
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        float movimentSpeed = 5f; // Units (Default: meter)
+        float movimentSpeed = 3f; // Units (Default: meter)
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
         // Debug.Log(horizontal);        
 
         Vector2 position = transform.position;
-        
+
         // Units per Frame
         // position.x = position.x + movimentSpeed * horizontal;
         // position.y = position.y + movimentSpeed * vertical;
@@ -52,5 +56,12 @@ public class BirdController : MonoBehaviour
         position.y = position.y + movimentSpeed * vertical * Time.deltaTime;
 
         transform.position = position;
+
+        // JUMPING
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("JUMPING");
+            rb.velocity = Vector2.up * jumpForce;
+        }
     }
 }
