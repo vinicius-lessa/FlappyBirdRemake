@@ -28,7 +28,7 @@ public class Boundaries : MonoBehaviour
     void LateUpdate()
     {
         Vector2 newPosition = transform.position;
-        newPosition.x = Mathf.Clamp(newPosition.x, -screenBounds.x + objectSilhouette, screenBounds.x - objectSilhouette);
+        // newPosition.x = Mathf.Clamp(newPosition.x, -screenBounds.x + objectSilhouette, screenBounds.x - objectSilhouette);
         newPosition.y = Mathf.Clamp(newPosition.y, -screenBounds.y + objectSilhouette, screenBounds.y + 4 - objectSilhouette);
         transform.position = newPosition;
     }
