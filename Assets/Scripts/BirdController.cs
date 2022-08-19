@@ -11,11 +11,12 @@
  *     
  *  1 second % FrameRate (example - Dt of 60Fps = 1 / 60 = 0.017f )
  *  Object Movement Example (starting X axis in 0)
- *  position.x + movimentSpeed * horizontal * Time.deltaTime;
  *  60fps
- *  EIXO X -> -2         + 5             * 1          * 0.017            = 0.051 (1 seg = 3.06)
+ *      -2         + 5             * 1          * 0.017             = 0.051 (1 seg = 3.06)
+ *      position.x + movimentSpeed * horizontal * Time.deltaTime;
  *  10fps
- *  EIXO X -> -2         + 5             * 1          * 0.1 	            = 0.3 (1 seg = 3)
+ *      -2         + 5             * 1          * 0.1 	            = 0.3 (1 seg = 3)
+ *      position.x + movimentSpeed * horizontal * Time.deltaTime;
  * 
  */
 
