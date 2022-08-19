@@ -1,7 +1,13 @@
+/**
+*   FILE DOC
+*   Description: GameManager do Jogo...
+*   08/19/2022 - Vinícius Lessa: Mudança na documentação do arquivo
+*
+**/ 
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-// Teste
 
 public class GameManager : MonoBehaviour
 {
