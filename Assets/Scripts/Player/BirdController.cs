@@ -40,31 +40,16 @@ public class BirdController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float movimentSpeed = 3f; // Units (Default: meter)
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
-        // Debug.Log(horizontal);        
-
-        Vector2 position = transform.position;
-
-        // Units per Frame
-        // position.x = position.x + movimentSpeed * horizontal;
-        // position.y = position.y + movimentSpeed * vertical;
-
-        // Units per second
-        position.x = position.x + movimentSpeed * horizontal * Time.deltaTime; // Moviment Speed * Time to Render 1 Frame               
-        position.y = position.y + movimentSpeed * vertical * Time.deltaTime;
-
-        transform.position = position;        
-    }
-
-    // Update is called once per PHYSICS frame
-    void FixedUpdate()
-    {
         // JUMPING
         if (Input.GetKeyDown(KeyCode.Space))
         {
             rb.velocity = Vector2.up * jumpForce;
         }
+    }
+
+    // Update is called once per PHYSICS frame
+    void FixedUpdate()
+    {
+        
     }
 }
