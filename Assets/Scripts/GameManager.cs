@@ -1,7 +1,8 @@
 /**
 * File DOC
 * 
-* @Description Script de controle do Player
+* @Description Script de gerenciamento do Player.
+* 
 * @ChangeLog 
 *   - Vinícius Lessa - 08/19/2022: Criação do Arquivo e documentação de cabeçalho. Movimentação do objeto GameManager.
 * 
@@ -16,13 +17,11 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-
     public float cameraSpeed;
 
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame

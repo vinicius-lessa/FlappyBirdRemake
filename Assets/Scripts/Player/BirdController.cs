@@ -4,6 +4,7 @@
 * @Description Script de controle do Player
 * @ChangeLog 
 *   - Vinícius Lessa - 08/19/2022: Criação do arquivo e documentação de cabeçalho. Início da captação de comandos via teclado e movimentação do Objeto.
+*   - Vinícius Lessa - 08/20/2022: Mudança da variável 'jumpForce' para Publica.
 * 
 * @ Tips & Tricks: 
 *  What is Delta Time?
@@ -28,7 +29,7 @@ public class BirdController : MonoBehaviour
 {
     // Player Components
     private Rigidbody2D rb;
-    private float jumpForce = 7f;
+    public float jumpForce = 7f;
 
     // Start is called before the first frame update
     void Start()
