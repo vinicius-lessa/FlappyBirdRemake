@@ -5,6 +5,7 @@
 * 
 * @ChangeLog 
 *   - Vinícius Lessa - 08/19/2022: Criação do Arquivo e documentação de cabeçalho. Movimentação do objeto GameManager.
+*   - Vinícius Lessa - 08/22/2022: Tratativa para chamar GameOver após colisão.
 * 
 * @ Tips & Tricks: 
 * 
@@ -18,6 +19,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public float cameraSpeed;
+
+    public GameObject o_Player;
 
     // Start is called before the first frame update
     void Start()
