@@ -1,10 +1,11 @@
 /**
 * File DOC
 * 
-* @Description Script que gerencia as Instâncias dos Obstáculos
+* @Description Script que gerencia as Instâncias dos Obstáculos.
 * 
 * @ChangeLog 
 *   - Vinícius Lessa - 08/20/2022: Criação do Arquivo e documentação de cabeçalho. Instanciação dos Prefabs no GameLevel Scene e cálculos iniciais de distância geral.
+*   - Vinícius Lessa - 08/22/2022: Implementação da destruição dos Gameobjects (pipes) após saírem da cena.
 * 
 * @ Tips & Tricks: 
 * 
@@ -15,7 +16,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Obstacles : MonoBehaviour
 {
     // GameObjects
     public GameObject pipePrefab;    
@@ -33,6 +34,7 @@ public class Enemy : MonoBehaviour
         StartCoroutine(SpawnPipes());
     }
 
+    // Instantiates Pipes
     private IEnumerator SpawnPipes()
     {
         var eixoY = Random.Range(4f, 8f);
@@ -44,11 +46,10 @@ public class Enemy : MonoBehaviour
 
         var xPipePosition = topPipe.transform.position.x;
 
-        while ( !(xPipePosition <= transform.position.x + 5) )
+        do
         {
-            yield return new WaitForSeconds(.01f);
-            Debug.Log(transform.position.x);
-        };
+            continue;
+        } while ( !(xPipePosition <= transform.position.x + 5) );
 
         yield return SpawnPipes();
     }
