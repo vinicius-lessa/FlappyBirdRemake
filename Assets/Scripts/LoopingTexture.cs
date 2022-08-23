@@ -17,11 +17,21 @@ using UnityEngine;
 
 public class LoopingTexture : MonoBehaviour
 {
+    // Float
     public float backgroundSpeed;
+
+    // Components
     public Renderer backgroundRenderer;
+
+    public void Start()
+    {
+    }
 
     void Update()
     {
-        backgroundRenderer.material.mainTextureOffset += new Vector2(backgroundSpeed * Time.deltaTime, 0f);
+        if (!GameManager.Instance.gameOver)
+        {
+            backgroundRenderer.material.mainTextureOffset += new Vector2(backgroundSpeed * Time.deltaTime, 0f);
+        }
     }
 }

@@ -16,11 +16,21 @@ public class BirdManager : MonoBehaviour
 
     }
 
-    // # GameOver
-        if (collision.gameObject.CompareTag("Killer")){
-            if (collision.transform.position.y >= (transform.position.y+0.8f)){ // Tentativa de corrigir bug de quebrar caixa mesmo batendo de lado quando a pedra está no ar                
-                GameManager.GameOver();
-                explode();
-}
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        // # HitPoint
+        if ( col.gameObject.CompareTag("HitPoint") || (!GameManager.Instance.gameOver) )
+        {
+            GameManager.Instance.IncreaseScore();
         }
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        // # GameOver
+        if (col.gameObject.CompareTag("Obstacle") || col.gameObject.CompareTag("Floor"))
+        {
+            FindObjectOfType<GameManager>().GameOver();
+        }
+    }
 }

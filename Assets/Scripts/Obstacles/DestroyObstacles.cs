@@ -20,14 +20,9 @@ public class DestroyObstacles : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("Pipe Hit the Player!!!");
-        }
-
         if (col.gameObject.CompareTag("CollisionDestroyPipe"))
         {
-            Destroy(this.gameObject);            
+            Destroy(this.gameObject);
         }
     }
 

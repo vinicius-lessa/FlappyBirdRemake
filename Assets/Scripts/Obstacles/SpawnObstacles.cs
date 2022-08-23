@@ -5,7 +5,8 @@
 * 
 * @ChangeLog 
 *   - Vinícius Lessa - 08/20/2022: Criação do Arquivo e documentação de cabeçalho. Instanciação dos Prefabs no GameLevel Scene e cálculos iniciais de distância geral.
-* 
+*   - Vinícius Lessa - 08/22/2022: Ajustes no processo de Spawn com a variável do EixoX.
+*   
 * @ Tips & Tricks: 
 * 
 *
@@ -19,15 +20,16 @@ public class SpawnObstacles: MonoBehaviour
 {
     // GameObjects
     public GameObject pipePrefab;
-    
-    private GameObject gameManagerObj;
+        
+    private float pipeSpawnDistance = 11f; 
 
-    private Vector2 currentPosition;
-    private float eixoX = 10;
+    void Awake()
+    {        
+    }
 
     void Start()
     {
-        gameManagerObj = GameObject.Find("GameManager");
+        // gameManagerObj = GameObject.Find("GameManager");
     }
 
     // ### CODE STARTS
@@ -40,11 +42,9 @@ public class SpawnObstacles: MonoBehaviour
     private IEnumerator SpawnPipes()
     {
         var eixoY = Random.Range(4f, 8f);
+        var eixoX = transform.position.x + pipeSpawnDistance;
 
-        var topPipe = Instantiate(pipePrefab, new Vector2(eixoX, eixoY), Quaternion.identity);
-        var bottomPipe = Instantiate(pipePrefab, new Vector2(eixoX, eixoY - 11), Quaternion.identity);
-
-        eixoX += 7;
+        var topPipe = Instantiate(pipePrefab, new Vector2(eixoX, eixoY), Quaternion.identity);        
 
         var xPipePosition = topPipe.transform.position.x;
 
@@ -53,9 +53,9 @@ public class SpawnObstacles: MonoBehaviour
         {
             yield return new WaitForSeconds(.01f);
             continue;
-        } while (!(xPipePosition <= gameManagerObj.transform.position.x + 5));
+        } while (!(xPipePosition <= transform.position.x + 5));
 
-        // yield return SpawnPipes();
+        yield return SpawnPipes();
 
     }
 }
