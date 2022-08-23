@@ -42,10 +42,13 @@ public class BirdController : MonoBehaviour
     void Update()
     {
         // JUMPING
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (!GameManager.Instance.gameOver)
         {
-            rb.velocity = Vector2.up * jumpForce;
-        }
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                rb.velocity = Vector2.up * jumpForce;
+            }
+        }  
     }
 
     // Update is called once per PHYSICS frame

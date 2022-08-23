@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class GameManager : MonoBehaviour
 {
     // Self Instance
@@ -25,6 +26,8 @@ public class GameManager : MonoBehaviour
     // GameObjects
     public GameObject o_Player;    
     public Text o_Score;
+    public Text o_textStart;
+    public GameObject gameOverScreen;
 
     // GameOver / Levels
     [HideInInspector]
@@ -42,13 +45,15 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        o_textStart.gameObject.SetActive(true);
         Instance = this;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        spawnObstacles = GetComponent<SpawnObstacles>();        
+        spawnObstacles = GetComponent<SpawnObstacles>();
+        
     }
 
     // Update is called once per frame
@@ -63,6 +68,7 @@ public class GameManager : MonoBehaviour
                 spawnObstacles.enabled = true;
                 // GameObj
                 o_Score.gameObject.SetActive(true);
+                o_textStart.gameObject.SetActive(false);
                 gameStarted = true;
             }
         }        
@@ -80,7 +86,6 @@ public class GameManager : MonoBehaviour
         {
             score++;
             o_Score.text = score.ToString();
-            Debug.Log(score);
         }
     }
 
@@ -88,6 +93,8 @@ public class GameManager : MonoBehaviour
     {
         // Debug.Log("GameOver Triggered!");
         gameOver = true;
+        gameOverScreen.gameObject.SetActive(true);
         o_Player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
     }
+
 }
