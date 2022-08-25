@@ -15,7 +15,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 
 public class GameManager : MonoBehaviour
@@ -25,8 +25,8 @@ public class GameManager : MonoBehaviour
 
     // GameObjects
     public GameObject o_Player;    
-    public Text o_Score;
-    public Text o_textStart;
+    public TextMeshProUGUI o_Score;
+    public TextMeshProUGUI o_textStart;
     public GameObject gameOverScreen;
 
     // GameOver / Levels
