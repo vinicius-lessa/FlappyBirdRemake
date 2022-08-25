@@ -21,16 +21,8 @@ public class SpawnObstacles: MonoBehaviour
     // GameObjects
     public GameObject pipePrefab;
         
-    private float pipeSpawnDistance = 11f; 
+    private float pipeSpawnDistance = 8.5f; 
 
-    void Awake()
-    {        
-    }
-
-    void Start()
-    {
-        // gameManagerObj = GameObject.Find("GameManager");
-    }
 
     // ### CODE STARTS
     void OnEnable()
@@ -41,7 +33,7 @@ public class SpawnObstacles: MonoBehaviour
     // Instantiates Pipes
     private IEnumerator SpawnPipes()
     {
-        var eixoY = Random.Range(4f, 8f);
+        var eixoY = Random.Range(-3f, 3f);
         var eixoX = transform.position.x + pipeSpawnDistance;
 
         var topPipe = Instantiate(pipePrefab, new Vector2(eixoX, eixoY), Quaternion.identity);        
