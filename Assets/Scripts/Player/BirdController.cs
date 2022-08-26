@@ -54,6 +54,5 @@ public class BirdController : MonoBehaviour
     // Update is called once per PHYSICS frame
     void FixedUpdate()
     {
-        
     }
 }

@@ -21,6 +21,7 @@ public class GameOverScreen : MonoBehaviour
 {
     public void RestartGame()
     {
+        AudioListener.volume = 1;
         SceneManager.LoadScene(0);
     }
 

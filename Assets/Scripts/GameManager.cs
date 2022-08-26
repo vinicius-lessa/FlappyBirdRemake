@@ -6,6 +6,7 @@
 * @ChangeLog 
 *   - Vinícius Lessa - 08/19/2022: Criação do Arquivo e documentação de cabeçalho. Movimentação do objeto GameManager.
 *   - Vinícius Lessa - 08/22/2022: Tratativa para chamar GameOver após colisão. Após GameOver, o Freeze X do BirdPlayer Object é desabilitado.
+*   - Vinícius Lessa - 08/26/2022: Mudança do objeto a ser ativado que terá como filhos os GameObjects Score e Botões no topo da tela.
 * 
 * @ Tips & Tricks: 
 * 
@@ -15,6 +16,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 
@@ -24,10 +26,13 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     // GameObjects
-    public GameObject o_Player;    
+    public GameObject o_Player;
+    public GameObject o_TopElements;
+    public GameObject o_GameOverScreen;
+
+    // Text
     public TextMeshProUGUI o_Score;
     public TextMeshProUGUI o_textStart;
-    public GameObject gameOverScreen;
 
     // GameOver / Levels
     [HideInInspector]
@@ -53,7 +58,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         spawnObstacles = GetComponent<SpawnObstacles>();
-        
     }
 
     // Update is called once per frame
@@ -64,14 +68,21 @@ public class GameManager : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.Space))
             {
                 o_Player.GetComponent<Rigidbody2D>().gravityScale = 2f;
-                // Component
+                
+                // Component (Script)
                 spawnObstacles.enabled = true;
-                // GameObj
-                o_Score.gameObject.SetActive(true);
+                
+                // GameObj                
                 o_textStart.gameObject.SetActive(false);
+
+                // Keep Top Elemenst Align
+                o_TopElements.gameObject.transform.Find("ScoreText").gameObject.SetActive(true);
+                o_TopElements.gameObject.transform.Find("PauseButton").gameObject.SetActive(true);
+                o_TopElements.gameObject.GetComponent<HorizontalOrVerticalLayoutGroup>().enabled = true;
+
                 gameStarted = true;
             }
-        }        
+        }
 
         // Camera Movement
         if (!gameOver && gameStarted)
@@ -93,7 +104,13 @@ public class GameManager : MonoBehaviour
     {
         // Debug.Log("GameOver Triggered!");
         gameOver = true;
-        gameOverScreen.gameObject.SetActive(true);
+
+        // Hides Score and Pause Button - Keep Top Elemenst Align        
+        o_TopElements.gameObject.transform.Find("ScoreText").gameObject.SetActive(false);
+        o_TopElements.gameObject.transform.Find("PauseButton").gameObject.SetActive(false);        
+        o_TopElements.gameObject.GetComponent<HorizontalOrVerticalLayoutGroup>().enabled = false;
+
+        o_GameOverScreen.gameObject.SetActive(true);
         o_Player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
     }
 
