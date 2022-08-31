@@ -3,7 +3,7 @@
  * 
  * @Description Script de controle do Player
  * @ChangeLog 
- *  - Vinícius Lessa - 08/19/2022: Criação do arquivo e documentação de cabeçalho.
+ *  - Vinï¿½cius Lessa - 08/19/2022: Criaï¿½ï¿½o do arquivo e documentaï¿½ï¿½o de cabeï¿½alho.
  * 
  * @ Tips & Tricks: 
  *      - Script Based on: https://youtu.be/ailbszpt_AI
@@ -17,14 +17,12 @@ public class Boundaries : MonoBehaviour
 {    
     private Vector2 screenBounds;
     private float objectSilhouette = .7f;
-
-    // Use this for initialization
+    
     void Start()
     {
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
     }
-
-    // Update is called once per frame
+    
     void LateUpdate()
     {
         Vector2 newPosition = transform.position;

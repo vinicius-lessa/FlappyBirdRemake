@@ -13,8 +13,6 @@
 *
 **/
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -28,7 +26,7 @@ public class GameManager : MonoBehaviour
     // GameObjects
     public GameObject o_Player;
     public GameObject o_TopElements;
-    public GameObject o_GameOverScreen;
+    public GameObject o_GameOverScreen;    
 
     // Text
     public TextMeshProUGUI o_Score;
@@ -77,10 +75,11 @@ public class GameManager : MonoBehaviour
 
                 // Keep Top Elemenst Align
                 o_TopElements.gameObject.transform.Find("ScoreText").gameObject.SetActive(true);
-                o_TopElements.gameObject.transform.Find("PauseButton").gameObject.SetActive(true);
-                o_TopElements.gameObject.GetComponent<HorizontalOrVerticalLayoutGroup>().enabled = true;
+                o_TopElements.gameObject.transform.Find("PauseButton").gameObject.SetActive(true);                
 
                 gameStarted = true;
+
+                // TopButtons.Instance.b_MuteUnmute.gameObject.GetComponent<LayoutGroup>() ;
             }
         }
 
@@ -93,8 +92,7 @@ public class GameManager : MonoBehaviour
 
     public void IncreaseScore()
     {
-        if (!gameOver)
-        {
+        if (!gameOver){
             score++;
             o_Score.text = score.ToString();
         }
@@ -103,12 +101,10 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         // Debug.Log("GameOver Triggered!");
-        gameOver = true;
+        gameOver    = true;
+        gameStarted = false;
 
-        // Hides Score and Pause Button - Keep Top Elemenst Align        
-        o_TopElements.gameObject.transform.Find("ScoreText").gameObject.SetActive(false);
-        o_TopElements.gameObject.transform.Find("PauseButton").gameObject.SetActive(false);        
-        o_TopElements.gameObject.GetComponent<HorizontalOrVerticalLayoutGroup>().enabled = false;
+        TopButtons.Instance.GameOverActivated();
 
         o_GameOverScreen.gameObject.SetActive(true);
         o_Player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
