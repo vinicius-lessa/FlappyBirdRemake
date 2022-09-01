@@ -7,9 +7,9 @@
 *   - Vinícius Lessa - 08/19/2022: Criação do Arquivo e documentação de cabeçalho. Movimentação do objeto GameManager.
 *   - Vinícius Lessa - 08/22/2022: Tratativa para chamar GameOver após colisão. Após GameOver, o Freeze X do BirdPlayer Object é desabilitado.
 *   - Vinícius Lessa - 08/26/2022: Mudança do objeto a ser ativado que terá como filhos os GameObjects Score e Botões no topo da tela.
+*   - Vinícius Lessa - 08/31/2022: Implementações na componentização da lógica do GameOver, agora tratativas específicas são feitas na Classe 'TopButton'.
 * 
-* @ Tips & Tricks: 
-* 
+* @ Tips & Tricks:
 *
 **/
 
@@ -100,13 +100,12 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        // Debug.Log("GameOver Triggered!");
+        // State Update
         gameOver    = true;
         gameStarted = false;
 
-        TopButtons.Instance.GameOverActivated();
-
         o_Player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None; // Cleans "Freeze Rotation X"
-    }
 
+        TopButtons.Instance.GameOverActivated(); // GUI GameOver Animation
+    }
 }

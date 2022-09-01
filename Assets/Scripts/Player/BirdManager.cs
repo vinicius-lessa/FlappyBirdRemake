@@ -1,3 +1,15 @@
+/**
+* File DOC
+* 
+* @Description Script de gerenciamento do Player.
+* 
+* @ChangeLog 
+*   - Vinícius Lessa - 08/31/2022: Criação da documentação de cabeçalho. Adicionado uso de Properties com relação a Classe GameManager. Verificação importante do estado do game para realizar próximos processamentos.
+* 
+* @ Tips & Tricks:
+*
+**/
+
 using UnityEngine;
 
 public class BirdManager : MonoBehaviour

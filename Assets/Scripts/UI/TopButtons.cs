@@ -6,9 +6,9 @@
 * @ChangeLog 
 *   - Vinícius Lessa - 08/19/2022: Criação do Arquivo e documentação de cabeçalho. Tratativa para que os botões de Mute/Unmute e Play/Pause tornem-se funcionais. Também adicionado a opção de teclas referentes as ações (P e M).
 *   - Vinícius Lessa - 08/30/2022: Ajuste no bug de posicionamento do Botão "Mute" ao se iniciar o estado de "Play" do game.
+*   - Vinícius Lessa - 08/33/2022: Implementação do Método GameOverActivated(), responsável por reaizar animações no GUI GameOver Screen.
 * 
 * @ Tips & Tricks:
-* 
 *
 **/
 
