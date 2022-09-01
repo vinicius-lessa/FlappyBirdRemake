@@ -106,8 +106,7 @@ public class GameManager : MonoBehaviour
 
         TopButtons.Instance.GameOverActivated();
 
-        o_GameOverScreen.gameObject.SetActive(true);
-        o_Player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+        o_Player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None; // Cleans "Freeze Rotation X"
     }
 
 }

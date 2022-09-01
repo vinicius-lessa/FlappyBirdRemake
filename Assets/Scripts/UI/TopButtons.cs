@@ -20,6 +20,7 @@ public class TopButtons : MonoBehaviour
 {
     public static TopButtons Instance { get; private set; } // Self Instance
 
+    // Sprites (for the buttons)
     // Mute/Unmute
     public Sprite s_MutedSprite;
     public Sprite s_UnmutedSprite;
@@ -33,7 +34,7 @@ public class TopButtons : MonoBehaviour
     public Button b_PausePlay;
 
     // GameObject
-    public GameObject o_Score;
+    public GameObject o_GameOverPanel;
 
     // Vars
     private bool isMuted = false;
@@ -41,7 +42,7 @@ public class TopButtons : MonoBehaviour
 
     private void Awake() {
         Instance = this;
-    }
+    }    
 
     void Update()
     {
@@ -75,14 +76,33 @@ public class TopButtons : MonoBehaviour
         isPaused = (isPaused ? isPaused = false : isPaused = true);
     }
 
-    public void GameOverActivated()
+    public void GameOverActivated() // Called by Game Manager
     {
-        b_PausePlay.gameObject.SetActive(false);
+        o_GameOverPanel.gameObject.SetActive(true);
+        b_PausePlay.gameObject.SetActive(false); // Disable Pause Button
+        
+        GameObject o_ChildScore         = transform.GetChild(1).gameObject;
+        Vector3 gameOverPanelOrgPos     = o_GameOverPanel.transform.position;
 
-        Vector3 scorePosition = gameObject.transform.GetChild(1).gameObject.transform.position;                
+        float scoreOffset       = o_GameOverPanel.transform.position.y - (o_GameOverPanel.GetComponent<RectTransform>().localScale.y / 2 - 10f); // Aways above GameOver Panel
+        float scoreBiggerMult   = 1.6f;
 
-        gameObject.transform.GetChild(1).gameObject.transform.DOMove(
-            new Vector3(scorePosition.x, scorePosition.y - 380.0f, scorePosition.z), 
+        // Set GameOver Panel Bellow the Scene
+        o_GameOverPanel.transform.position = new Vector3(o_GameOverPanel.transform.position.x, o_GameOverPanel.transform.position.y - 380.0f, o_GameOverPanel.transform.position.z);
+
+        // Animations
+        // GameOver Panel
+        o_GameOverPanel.transform.DOMove(
+            gameOverPanelOrgPos,
             1f).SetEase(Ease.InOutQuint);
+
+        // Score Text
+        o_ChildScore.transform.DOMove(
+            new Vector3(o_ChildScore.transform.position.x, o_ChildScore.transform.position.y - scoreOffset, o_ChildScore.transform.position.z),
+            1f).SetEase(Ease.InOutQuint);
+        
+        o_ChildScore.transform.DOScale(
+            new Vector3(o_ChildScore.transform.localScale.x * scoreBiggerMult, o_ChildScore.transform.localScale.y * scoreBiggerMult, o_ChildScore.transform.localScale.z),
+            1f).SetEase(Ease.InOutQuint);        
     }
 }
