@@ -8,6 +8,7 @@ TagManager:
   - Obstacle
   - Floor
   - HitPoint
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -48,6 +49,9 @@ TagManager:
   - name: Backgrounds
     uniqueID: 251049863
     locked: 0
-  - name: Player
+  - name: PlayerLevel
     uniqueID: 1824109493
+    locked: 0
+  - name: Ground
+    uniqueID: 2839866499
     locked: 0

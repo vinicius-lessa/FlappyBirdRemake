@@ -3,8 +3,8 @@
 * 
 * @Description Script de controle do Player
 * @ChangeLog 
-*   - VinÌcius Lessa - 08/19/2022: CriaÁ„o do arquivo e documentaÁ„o de cabeÁalho. InÌcio da captaÁ„o de comandos via teclado e movimentaÁ„o do Objeto.
-*   - VinÌcius Lessa - 08/20/2022: MudanÁa da vari·vel 'jumpForce' para Publica.
+*   - Vin√≠cius Lessa - 08/19/2022: Cria√ß√£o do arquivo e documenta√ß√£o de cabe√ßalho. In√≠cio da capta√ß√£o de comandos via teclado e movimenta√ß√£o do Objeto.
+*   - Vin√≠cius Lessa - 08/20/2022: Mudan√ßa da vari√°vel 'jumpForce' para Publica.
 * 
 * @ Tips & Tricks: 
 *  What is Delta Time?
@@ -21,38 +21,35 @@
 * 
 */
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BirdController : MonoBehaviour
 {
     // Player Components
     private Rigidbody2D rb;
-    public float jumpForce = 7f;
+    float jumpForce;
 
     // Start is called before the first frame update
     void Start()
     {
-        // Cashing do MÈtodo GET COMPONENT para o processamento ficar mais leve a cada frame
+        // Cashing do M√©todo GET COMPONENT para o processamento ficar mais leve a cada frame
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         // JUMPING
-        if (!GameManager.Instance.gameOver)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                rb.velocity = Vector2.up * jumpForce;
+        if (!GameManager.Instance.gameOver){
+            if (Input.GetKeyDown(KeyCode.Space)){
+                jumpForce = 7f;
             }
-        }  
+        }
     }
-
-    // Update is called once per PHYSICS frame
+    
     void FixedUpdate()
     {
+        if (jumpForce > 0){
+            rb.velocity = Vector2.up * jumpForce;
+            jumpForce   = 0;
+        }
     }
 }

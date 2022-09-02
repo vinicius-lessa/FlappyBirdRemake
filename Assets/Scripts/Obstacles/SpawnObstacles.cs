@@ -1,14 +1,12 @@
 /**
 * File DOC
 * 
-* @Description Script que gerencia as Instâncias dos Obstáculos.
+* @Date - 08/20/2022
+* @Description - Script que gerencia as InstÃ¢ncias dos ObstÃ¡culos.
 * 
 * @ChangeLog 
-*   - Vinícius Lessa - 08/20/2022: Criação do Arquivo e documentação de cabeçalho. Instanciação dos Prefabs no GameLevel Scene e cálculos iniciais de distância geral.
-*   - Vinícius Lessa - 08/22/2022: Ajustes no processo de Spawn com a variável do EixoX.
-*   
-* @ Tips & Tricks: 
-* 
+*   - VinÃ­cius Lessa - 08/20/2022: InstanciaÃ§Ã£o dos Prefabs no GameLevel Scene e cÃ¡lculos iniciais de distÃ¢ncia geral.
+*   - VinÃ­cius Lessa - 08/22/2022: Ajustes no processo de Spawn com a variÃ¡vel do EixoX.
 *
 **/
 
@@ -20,6 +18,7 @@ public class SpawnObstacles: MonoBehaviour
 {
     // GameObjects
     public GameObject pipePrefab;
+    public bool spawnEnable;
         
     private float pipeSpawnDistance = 8.5f; 
 
@@ -27,7 +26,9 @@ public class SpawnObstacles: MonoBehaviour
     // ### CODE STARTS
     void OnEnable()
     {
-        StartCoroutine(SpawnPipes());
+        if (spawnEnable){
+            StartCoroutine(SpawnPipes());
+        }        
     }
 
     // Instantiates Pipes
