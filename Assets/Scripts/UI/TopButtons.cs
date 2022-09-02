@@ -34,15 +34,20 @@ public class TopButtons : MonoBehaviour
     public Button b_PausePlay;
 
     // GameObject
-    public GameObject o_GameOverPanel;
+    public GameObject gameOverPanel;
 
     // Vars
     private bool isMuted = false;
     private bool isPaused = false;
+    private Vector3 goPanelStartPos;
 
     private void Awake() {
         Instance = this;
     }    
+
+    private void Start() {
+        goPanelStartPos = gameOverPanel.transform.position;
+    }
 
     void Update()
     {
@@ -78,31 +83,26 @@ public class TopButtons : MonoBehaviour
 
     public void GameOverActivated() // Called by Game Manager
     {
-        o_GameOverPanel.gameObject.SetActive(true);
-        b_PausePlay.gameObject.SetActive(false); // Disable Pause Button
-        
-        GameObject o_ChildScore         = transform.GetChild(1).gameObject;
-        Vector3 gameOverPanelOrgPos     = o_GameOverPanel.transform.position;
+        GameOverScreen.Instance.AnimateGOScreen();
+        AnimateScore();
+    }
 
-        float scoreOffset       = o_GameOverPanel.transform.position.y - (o_GameOverPanel.GetComponent<RectTransform>().localScale.y / 2 - 10f); // Aways above GameOver Panel
+    private void AnimateScore(){        
+        
+        b_PausePlay.gameObject.SetActive(false); // Disable Pause Button
+
+        GameObject o_ChildScore = transform.GetChild(1).gameObject;
+        float scoreOffset       = gameOverPanel.GetComponent<RectTransform>().sizeDelta.y / 2 + 50f; // Aways above GameOver Panel
         float scoreBiggerMult   = 1.6f;
 
-        // Set GameOver Panel Bellow the Scene
-        o_GameOverPanel.transform.position = new Vector3(o_GameOverPanel.transform.position.x, o_GameOverPanel.transform.position.y - 380.0f, o_GameOverPanel.transform.position.z);
-
-        // Animations
-        // GameOver Panel
-        o_GameOverPanel.transform.DOMove(
-            gameOverPanelOrgPos,
-            1f).SetEase(Ease.InOutQuint);
-
-        // Score Text
-        o_ChildScore.transform.DOMove(
-            new Vector3(o_ChildScore.transform.position.x, o_ChildScore.transform.position.y - scoreOffset, o_ChildScore.transform.position.z),
+        // Score Text - Position
+        o_ChildScore.GetComponent<RectTransform>().transform.DOMove(
+            new Vector3(o_ChildScore.transform.position.x, goPanelStartPos.y + scoreOffset, o_ChildScore.transform.position.z),
             1f).SetEase(Ease.InOutQuint);
         
+        // Score Text - Scale
         o_ChildScore.transform.DOScale(
             new Vector3(o_ChildScore.transform.localScale.x * scoreBiggerMult, o_ChildScore.transform.localScale.y * scoreBiggerMult, o_ChildScore.transform.localScale.z),
-            1f).SetEase(Ease.InOutQuint);        
+            1f).SetEase(Ease.InOutQuint);
     }
 }

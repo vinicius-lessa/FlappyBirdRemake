@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
         }
 
         // Camera Movement
-        if (!gameOver && gameStarted)
+        if (!gameOver)
         {
             transform.position += new Vector3(cameraSpeed * Time.deltaTime, 0, 0);            
         }
