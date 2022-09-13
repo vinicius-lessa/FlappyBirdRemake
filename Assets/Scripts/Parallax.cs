@@ -28,13 +28,10 @@ public class Parallax : MonoBehaviour
         startPos    = transform.position.x;
         cam         = Camera.main.transform;
         lenght      = GetComponent<SpriteRenderer>().bounds.size.x;
-        // lenght      = transform.localScale.magnitude;
-        
-        Debug.Log(lenght);
     }
     
     void Update()
-    {        
+    {
         // Parallax (X Axis)
         float distance      = cam.transform.position.x * parallaxEffect;        // Moves the object according to the Camera Position/Movement (left -n, right +n)
         transform.position = new Vector3(startPos + distance, transform.position.y, transform.position.z);

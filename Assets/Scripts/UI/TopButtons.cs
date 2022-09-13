@@ -92,12 +92,13 @@ public class TopButtons : MonoBehaviour
         b_PausePlay.gameObject.SetActive(false); // Disable Pause Button
 
         GameObject o_ChildScore = transform.GetChild(1).gameObject;
-        float scoreOffset       = gameOverPanel.GetComponent<RectTransform>().sizeDelta.y / 2 + 50f; // Aways above GameOver Panel
+        // float scoreOffset       = gameOverPanel.GetComponent<RectTransform>().position.y + gameOverPanel.GetComponent<RectTransform>().sizeDelta.y / 2; // Aways above GameOver Panel
+        float scoreOffset       = gameOverPanel.GetComponent<RectTransform>().position.y; // Aways above GameOver Panel
         float scoreBiggerMult   = 1.6f;
 
         // Score Text - Position
         o_ChildScore.GetComponent<RectTransform>().transform.DOMove(
-            new Vector3(o_ChildScore.transform.position.x, goPanelStartPos.y + scoreOffset, o_ChildScore.transform.position.z),
+            new Vector3(o_ChildScore.transform.position.x, goPanelStartPos.y, o_ChildScore.transform.position.z),
             1f).SetEase(Ease.InOutQuint);
         
         // Score Text - Scale
